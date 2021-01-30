@@ -24,4 +24,3 @@ Route::get('/inicio', function () {
 });
 
 Route::resource('persona', PersonaController::class);
-

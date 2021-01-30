@@ -45,7 +45,12 @@
                       </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                        <form id="borrar_registro" action="{{route('persona.destroy',$item)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{route('persona.show',$item->id)}}" class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                            <button type="submit" class="text-red-600 hover:text-red-900">Borrar</button>
+                        </form>
                     </td>
                   </tr>
                 @endforeach

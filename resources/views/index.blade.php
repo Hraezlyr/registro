@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{asset('/js/app.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="bg-gray-800">
@@ -96,11 +99,21 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="bg-gray-100">
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             @yield('contenido')
         </div>
-      </main>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        @if (session('eliminar') == 'ok')
+            <script>
+                Swal.fire(
+                'Eliminado!',
+                'El registro ha sido eliminado',
+                'success')
+            </script>
+        @endif
+        <script src="{{url('/js/alerta_borrar.js')}}"></script>
+    </main>
 
 
 

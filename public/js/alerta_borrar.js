@@ -1,4 +1,4 @@
-$('#borrar_registro').submit(function(e){
+$('.borrar_registro').submit(function(e){
     e.preventDefault();
     Swal.fire({
         title: 'Esta seguro de eliminar este registro?',

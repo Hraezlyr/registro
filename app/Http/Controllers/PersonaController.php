@@ -93,7 +93,7 @@ class PersonaController extends Controller
         $datosPersona->hijos()->save($datosHijo);
         $datosPersona->beneficiarios()->save($datosBeneficiario);
         $datosPersona->anexos()->save($datosAnexo);
-        return redirect(route('persona.index'));
+        return redirect(route('persona.index'))->with('guardar','ok');
     }
 
     /**

@@ -8,6 +8,14 @@
       <p class="mt-1 max-w-2xl text-sm text-gray-500">
         Detalles del personal registrado.
       </p>
+      <hr>
+      <br>
+        <div class="flex flex-wrap justify-left">
+            <div class="w-6/12 sm:w-4/12 px-4">
+              <img src="https://www.hdwallpapers.in/download/new_ellie_the_last_of_us_2_4k_hd_games-HD.jpg" class="shadow-lg rounded max-w-full h-auto align-middle border-none" />
+            </div>
+        </div>
+
     </div>
     <div class="border-t border-gray-200">
       <dl>

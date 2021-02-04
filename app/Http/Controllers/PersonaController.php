@@ -121,7 +121,7 @@ class PersonaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        //
+        
     }
 
     /**

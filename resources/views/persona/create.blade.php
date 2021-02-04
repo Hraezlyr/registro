@@ -18,6 +18,15 @@
   }
   ```
 -->
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-center text-3xl font-bold leading-tight text-gray-900">
+        SINDICATO DE PROFESIONALES DE LA EDUCACION SUPERIOR “IVAN MONTENEGRO BÁEZ” (SIPROES) UNIVERSIDAD NACIONAL AUTONOMA DE NICARAGUA, LEON
+
+        <h2 class="text-center text-3xl font-bold leading-tight text-gray-900">FICHA DE AFILIACÓN A LA MUTUAL DOCENTES</h2>
+      </h1>
+    </div>
+  </header>
 <form action="{{route('persona.store')}}" method="POST">
     @csrf
     <div>
@@ -102,9 +111,10 @@
                   <div class="col-span-6 sm:col-span-3">
                     <label for="estado_civil" class="block text-sm font-medium text-gray-700">Estado Civil</label>
                     <select id="estado_civil" name="estado_civil" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option>Soltero</option>
-                        <option>Casado</option>
-                        <option>Acompañado</option>
+                        <option value="" disabled selected>Seleccione una opción...</option>
+                        <option value="soltero">Soltero</option>
+                        <option value="casado">Casado</option>
+                        <option value="acompañado">Acompañado</option>
                     </select>
                   </div>
                   <br>
@@ -170,14 +180,14 @@
                 </div>
                 <div class="col-span-6 sm:col-span-3">
                     <div class="flex items-center">
-                      <input id="push_everything" name="push_notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="1">
-                      <label for="push_everything" class="ml-3 block text-sm font-medium text-gray-700">
+                      <input id="si_tengo" name="confirmar_hijo" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="T">
+                      <label for="si_tengo" class="ml-3 block text-sm font-medium text-gray-700">
                         Si
                       </label>
                     </div>
                     <div class="flex items-center">
-                      <input id="push_email" name="push_notifications" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="0">
-                      <label for="push_email" class="ml-3 block text-sm font-medium text-gray-700">
+                      <input id="no_tengo" name="confirmar_hijo" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="F">
+                      <label for="no_tengo" class="ml-3 block text-sm font-medium text-gray-700">
                         No
                       </label>
                     </div>
@@ -187,15 +197,16 @@
                         <input type="text" name="nombre_hijo" id="nombre_hijo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
                 <div class="col-span-6 sm:col-span-2">
-                    <label for="estado_civil" class="block text-sm font-medium text-gray-700">Sexo</label>
-                    <select id="estado_civil" name="estado_civil" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
+                    <select id="sexo" name="sexo" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="" disabled selected>Seleccione el sexo...</option>
                         <option>Femenino</option>
                         <option>Masculino</option>
                     </select>
                 </div>
                 <div class="grid grid-cols-1">
-                    <label for="edad_hijo" class="block text-sm font-medium text-gray-700">Edad</label>
-                    <input type="number" name="edad_hijo" id="edad_hijo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
+                    <input type="number" name="edad" id="edad" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                 </div>
               </div>
@@ -343,7 +354,7 @@
                         </div>
                         <div class="col-start-1 col-end-7">
                             <div>
-                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                <label for="observaciones" class="block text-sm font-medium text-gray-700">
                                   Observaciones
                                 </label>
                                 <div class="mt-1">
@@ -365,6 +376,7 @@
 </div>
 </form>
 <script src="{{asset('/js/facultad.js')}}"></script>
+<script src="{{asset('/js/validacion.js')}}"></script>
 
 @endsection
 

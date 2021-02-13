@@ -83,7 +83,7 @@
                   <div class="text-base font-medium leading-none text-white">Tom Cook</div>
                   <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
                 </div>
-                <button class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <button id="boton" class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span class="sr-only">View notifications</span>
                   <!-- Heroicon name: bell -->
                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -91,7 +91,7 @@
                   </svg>
                 </button>
               </div>
-              <div class="mt-3 px-2 space-y-1">
+              <div id="menu" class="mt-3 px-2 space-y-1 hidden">
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Your Profile</a>
 
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Settings</a>

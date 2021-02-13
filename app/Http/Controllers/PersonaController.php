@@ -40,8 +40,6 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         $datosPersona = new Persona();
-        $datosHijo = new Hijo();
-        $datosBeneficiario = new Beneficiario();
         $datosAnexo = new Anexo();
 
 
@@ -69,18 +67,35 @@ class PersonaController extends Controller
         $datosPersona->m_fallecida = $request->m_fallecida;
         $datosPersona->p_fallecido = $request->p_fallecido;
         $datosPersona->c_fallecido = $request->c_fallecido;
-
+        $datosPersona->save();
         //tabla hijo
-        $datosHijo->nombre_hijo = $request->nombre_hijo;
-        $datosHijo->edad = $request->edad_hijo;
-        $datosHijo->sexo = $request->sexo_hijo;
+        $nombre = $request->nombre_hijo;
+        $edad = $request->edad;
+        $sxo = $request->sexo;
+        foreach ($request->input('nombre_hijo') as $key => $value) {
+            $datosHijo = new Hijo();
+            $datosHijo->nombre_hijo = $nombre[$key];
+            $datosHijo->edad = $edad[$key];
+            $datosHijo->sexo = $sxo[$key];
+            $datosPersona->hijos()->save($datosHijo);
+
+        }
+
+
 
         //tabla beneficiario
-        $datosBeneficiario->nombre_beneficiario = $request->nombre_beneficiario;
-        $datosBeneficiario->cedula_beneficiario = $request->cedula_beneficiario;
-        $datosBeneficiario->parentezco = $request->parentezco;
-        $datosBeneficiario->cel_beneficiario = $request->cel_beneficiario;
-
+        $nombre_b = $request->nombre_beneficiario;
+        $cedula_b = $request->cedula_beneficiario;
+        $parentezco_b =  $request->parentezco;
+        $celular_b = $request->cel_beneficiario;
+        foreach($request->input('nombre_beneficiario') as $key => $value) {
+            $datosBeneficiario = new Beneficiario();
+            $datosBeneficiario->nombre_beneficiario = $nombre_b[$key];
+            $datosBeneficiario->cedula_beneficiario = $cedula_b[$key];
+            $datosBeneficiario->parentezco = $parentezco_b[$key];
+            $datosBeneficiario->cel_beneficiario = $celular_b[$key];
+            $datosPersona->beneficiarios()->save($datosBeneficiario);
+        }
         //tabla anexo
         $datosAnexo->partida_afiliado = $request->partida_afiliado;
         $datosAnexo->partida_hijo =  $request->partida_hijo;
@@ -88,10 +103,6 @@ class PersonaController extends Controller
         $datosAnexo->acta_matrimonio = $request->acta_matrimonio;
         $datosAnexo->declaracion_notariada = $request->declaracion_notariada;
         $datosAnexo->observaciones = $request->observaciones;
-
-        $datosPersona->save();
-        $datosPersona->hijos()->save($datosHijo);
-        $datosPersona->beneficiarios()->save($datosBeneficiario);
         $datosPersona->anexos()->save($datosAnexo);
         return redirect(route('persona.index'))->with('guardar','ok');
     }
@@ -105,9 +116,9 @@ class PersonaController extends Controller
     public function show($id)
     {
         $datos = Persona::find($id);
-        $datosA = Anexo::find($id);
-        $datosB = Beneficiario::find($id);
-        $datosH = Hijo::find($id);
+        $datosA = Anexo::where('persona_id',$id)->get();
+        $datosB = Beneficiario::where('persona_id',$id)->get();
+        $datosH = Hijo::where('persona_id',$id)->get();
 
 
         return view('persona.show',compact('datos','datosH','datosB','datosA'));
@@ -121,7 +132,7 @@ class PersonaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        
+
     }
 
     /**

@@ -9,7 +9,7 @@ class Persona extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['$persona_id'];
+    protected $fillable = ['$persona_id','imagen'];
 
     public function hijos()
     {
@@ -19,7 +19,7 @@ class Persona extends Model
     {
         return $this->hasMany(Beneficiario::class,'persona_id');
     }
-    public function anexos()
+    public function anexo()
     {
         return $this->hasOne(Anexo::class,'persona_id');
     }

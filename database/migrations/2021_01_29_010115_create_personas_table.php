@@ -25,6 +25,7 @@ class CreatePersonasTable extends Migration
             $table->string('facultad');
             $table->string('departamento');
             $table->text('direccion');
+            $table->string('imagen');
             $table->string('cel_tigo')->unique()->nullable();
             $table->string('cel_claro')->unique()->nullable();
             $table->string('cel_casa')->unique()->nullable();

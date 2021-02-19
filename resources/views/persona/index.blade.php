@@ -27,11 +27,11 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="https://i.ytimg.com/vi/4oHdRZkka1A/maxresdefault.jpg" alt="">
+                            <img class="h-10 w-10 rounded-full" src="{{asset(Storage::url($item->imagen))}}" alt="">
                           </div>
                         <div class="ml-4">
                           <div class="text-sm font-medium text-gray-900">
-                            {{$item->nombre}}
+                              <a href="{{route('persona.show',$item->id)}}">{{$item->nombre}}</a>
                           </div>
                           <div class="text-sm text-gray-500">
                             {{$item->correo}}
@@ -51,7 +51,7 @@
                         <form class="borrar_registro" action="{{route('persona.destroy',$item)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <a href="{{route('persona.show',$item->id)}}" class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                            <a href="{{route('persona.edit',$item->id)}}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                             <button type="submit" class="text-red-600 hover:text-red-900">Borrar</button>
                         </form>
                     </td>
@@ -64,6 +64,7 @@
       </div>
     </div>
 </div>
+
 @endsection
 
 

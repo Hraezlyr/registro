@@ -3,7 +3,7 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Información del Profesor.
+        Información del Docente.
       </h3>
       <p class="mt-1 max-w-2xl text-sm text-gray-500">
         Detalles del personal registrado.
@@ -12,7 +12,7 @@
       <br>
         <div class="flex flex-wrap justify-left">
             <div class="w-6/12 sm:w-4/12 px-4">
-              <img src="https://www.hdwallpapers.in/download/new_ellie_the_last_of_us_2_4k_hd_games-HD.jpg" class="shadow-lg rounded max-w-full h-auto align-middle border-none" />
+              <img src="{{asset(Storage::url($datos->imagen))}}" class="shadow-lg rounded max-w-full h-auto align-middle border-none" />
             </div>
         </div>
 
@@ -57,6 +57,7 @@
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             {{$datos->cedula}}
+
           </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -128,12 +129,12 @@
               Datos de hijos
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            @foreach ($datosH as $item)
-
-                {{$item->nombre_hijo}}
-                <br>
-
-            @endforeach
+              <ul>
+                  <li>Nombre:</li>
+                  @foreach ($datosH as $item)
+                    <li>{{$item->nombre_hijo}}</li>
+                  @endforeach
+              </ul>
             </dd>
           </div>
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -142,7 +143,11 @@
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 @foreach ($datosB as $item)
-                    {{$item->nombre_beneficiario}}
+                    <ul>
+                      <li class="list-none">
+                        {{$item->nombre_beneficiario}}
+                      </li>
+                    </ul>
                     <br>
                 @endforeach
             </dd>

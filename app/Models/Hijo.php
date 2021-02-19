@@ -9,6 +9,8 @@ class Hijo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['$nombre_hijo'];
+
     public function persona(){
         return $this->belongsTo(Persona::class);
     }

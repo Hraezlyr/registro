@@ -214,8 +214,8 @@
                                     </div>
                                 </div>
                                 <div class="col-span-6">
-                                    <button type="button" class="clonar-hijo">Añadir</button>
-                                    <button type="button" class="borrar-hijo">Borrar campos</button>
+                                    <button type="button" id="añadir_h" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir campos</button>
+                                    <button type="button" id="borrar_h" class="borrar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar campos</button>
                                 </div>
                                 <div id="grupo-hijo" class="col-span-6">
                                     <div class="hijos grid grid-cols-6 gap-4">
@@ -260,9 +260,10 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div id="formulario" class="px-4 py-5 bg-white sm:p-6">
                             <div class="col-span-6">
-                                <button type="button" class="clonar border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Añadir campos</button>
-                                <button type="button" class="borrar-beneficiarios">Borrar campos</button>
+                                <button type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir campos</button>
+                                <button type="button" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar campos</button>
                             </div>
+                            <br>
                             <div class="grupo grid grid-cols-6 gap-4">
                                 <div class="col-start-1 col-span-2">
                                     <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
@@ -348,7 +349,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-span-6 sm:col-span-3">
+                                <div id="matrimonio" class="col-span-6 sm:col-span-3">
                                     <label for="last_name" class="block text-sm font-medium text-gray-700">Certificado de Matrimonio</label>
                                     <div class="flex items-center">
                                         <input id="acta_matrimonio" name="acta_matrimonio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="1">
@@ -357,7 +358,7 @@
                                         </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="acta_matrimonio" name="acta_matrimonio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="0">
+                                        <input id="acta_matrimonio" name="acta_matrimonio" type="radio" class="no_matrimonio focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="0">
                                         <label for="acta_matrimonio" class="ml-3 block text-sm font-medium text-gray-700">
                                             No
                                         </label>

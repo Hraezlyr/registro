@@ -43,7 +43,8 @@ class PersonaFactory extends Factory
             'padre' => $this->faker->name($gender = 'male'),
             'm_fallecida' => $this->faker->boolean(),
             'p_fallecido' => $this->faker->boolean(),
-            'c_fallecido' => $this->faker->boolean()
+            'c_fallecido' => $this->faker->boolean(),
+            'imagen' => $this->faker->imageUrl($width = 640, $height = 480)
         ];
     }
 }

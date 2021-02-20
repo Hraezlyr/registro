@@ -184,6 +184,7 @@ class PersonaController extends Controller
             $persona->imagen = $request->file('imagen')->store('public/images');
 
         }
+        $persona->imagen = $request->file('imagen')->store('public/images');
         $persona->save();
 
 

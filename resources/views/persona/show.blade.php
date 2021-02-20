@@ -12,7 +12,7 @@
       <br>
         <div class="flex flex-wrap justify-left">
             <div class="w-6/12 sm:w-4/12 px-4">
-              <img src="{{asset(Storage::url($datos->imagen))}}" class="shadow-lg rounded max-w-full h-auto align-middle border-none" />
+              <img src="{{$datos->imagen}}{{--asset(Storage::url($datos->imagen))--}}" class="shadow-lg rounded max-w-full h-auto align-middle border-none" />
             </div>
         </div>
 

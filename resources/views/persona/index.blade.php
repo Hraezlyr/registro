@@ -23,7 +23,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($lista as $item)
-                <tr>
+                <tr class="hover:bg-gray-300">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">

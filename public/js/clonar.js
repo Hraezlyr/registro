@@ -36,7 +36,12 @@ $(document).on('click','.borrar-hijo', function() {
     var $clone = $('#grupo-hijo .hijos').last();
     $clone.remove();
 })
-$(document).on('click','.borrar-beneficiarios', function() {
+/*$(document).on('click','.borrar-beneficiarios', function() {
     var $clone = $('#formulario .grupo').last();
     $clone.remove();
-})
+})*/
+
+$(".borrar-beneficiarios").click(function() {
+    $(this).closest('div.row').remove();
+  });
+

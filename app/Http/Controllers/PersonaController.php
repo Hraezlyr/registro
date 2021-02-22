@@ -140,10 +140,7 @@ class PersonaController extends Controller
     public function edit($id)
     {
         $datos = Persona::find($id);
-        $datosB = Beneficiario::where('persona_id',$id)->get();
-        $datosH = Hijo::where('persona_id',$id)->get();
-        $datosA = Persona::where('id',$id)->with('anexo')->get();
-        return view('persona.edit',compact('datos','datosH','datosB','datosA'));
+        return view('persona.edit',compact('datos'));
     }
 
     /**
@@ -184,20 +181,26 @@ class PersonaController extends Controller
             $persona->imagen = $request->file('imagen')->store('public/images');
 
         }
-        $persona->imagen = $request->file('imagen')->store('public/images');
-        $persona->save();
-
-
-        /*for ($i=0; $i < $cant; $i++) {
-            $persona->hijos()->updateOrCreate([
-                'nombre_hijo' => $request->nombre_hijo[$i],
-                'sexo' => $request->sexo[$i],
-                'edad' => $request->edad[$i]
-
-            ]);
+        else {
+            $persona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
         }
-*/
+        $cant = $request->nombre_hijo;
+        for ($i=0; $i < count($cant) ; $i++) {
+            if(count($cant)>2){
 
+            $persona->hijos[$i]->nombre_hijo = $request->nombre_hijo[$i];
+            $persona->hijos[$i]->edad = $request->edad[$i];
+            $persona->hijos[$i]->sexo = $request->sexo[$i];
+            $persona->push();
+            }
+            else{
+                $persona->hijos[$i+1]->delete();
+
+            }
+
+
+        }
+        $persona->save();
         Anexo::where('persona_id',$persona->id)->update([
             'partida_afiliado' => $request->partida_afiliado,
             'partida_hijo' => $request->partida_hijo,

@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/inicio', function () {
-    return view('inicio');
+Route::get('/bienvenido', function () {
+    return view('bienvenido');
 });
 
 Route::resource('persona', PersonaController::class);

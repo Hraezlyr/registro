@@ -6,13 +6,97 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </head>
-<body>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+    .font-family-karla { font-family: karla; }
+        .bg-sidebar { background: #546e7a; }
+        .cta-btn { color: #4E66C4; }
+        .upgrade-btn { background: #4E66C4; }
+        .upgrade-btn:hover { background: #819ca9; }
+        .active-nav-link { background: #819ca9; }
+        .nav-item:hover { background: #819ca9; }
+        .account-link:hover { background: #29434e; }
+        .cinta {background: #29434e;}
+        .divisor {width: 90%;margin: auto}
+</style>
+<body class="flex bg-gray-100">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="{{asset('/js/app.js')}}"></script>
 
+    <aside class="hidden relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+        <div class="p-6">
+            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+        </div>
+        <nav class="text-white text-base font-semibold pt-3">
+
+            <a href="{{url('/bienvenido')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Inicio
+            </a>
+            <hr class="divisor">
+            <a href="{{url('/persona')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                <i class="fas fa-sticky-note mr-3"></i>
+                Ver Registros
+            </a>
+            <hr class="divisor">
+            <a href="{{url('/persona/create')}}" class="flex items-center text-white hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-table mr-3"></i>
+                Agregar un registro
+            </a>
+
+        </nav>
+        <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+            <i class="fas fa-arrow-circle-up mr-3"></i>
+            Upgrade to Pro!
+        </a>
+    </aside>
+    <div class="w-full flex flex-col h-screen overflow-y-hidden">
+        <header class="w-full items-center cinta py-2 px-6 hidden sm:flex">
+            <div class="w-1/2"></div>
+            <div class="relative w-1/2 flex justify-end">
+                <button id="boton" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                    <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
+                </button>
+                <button class="hidden h-full w-full fixed inset-0 cursor-default"></button>
+                <div id="menu" class="hidden absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+                </div>
+            </div>
+        </header>
+        <br>
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow p-1">
+
+                    @yield('contenido')
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                @if (session('guardar') == 'ok')
+                    <script>
+                        Swal.fire(
+                        'Guardado!',
+                        'El registro ha sido guardado',
+                        'success')
+                    </script>
+                @endif
+                @if (session('eliminar') == 'ok')
+                    <script>
+                        Swal.fire(
+                        'Eliminado!',
+                        'El registro ha sido eliminado',
+                        'success')
+                    </script>
+                @endif
+                <script src="{{url('/js/alerta_borrar.js')}}"></script>
+                <script src="{{url('/js/menu.js')}}"></script>
+            </main>
+        </div>
+    </div>
+    {{--
     <nav class="bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
@@ -127,32 +211,7 @@
             </div>
           </div>
         </div>
-      </nav>
-    <main class="bg-gray-100">
-        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            @yield('contenido')
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        @if (session('guardar') == 'ok')
-            <script>
-                Swal.fire(
-                'Guardado!',
-                'El registro ha sido guardado',
-                'success')
-            </script>
-        @endif
-        @if (session('eliminar') == 'ok')
-            <script>
-                Swal.fire(
-                'Eliminado!',
-                'El registro ha sido eliminado',
-                'success')
-            </script>
-        @endif
-        <script src="{{url('/js/alerta_borrar.js')}}"></script>
-        <script src="{{url('/js/menu.js')}}"></script>
-    </main>
-
+      </nav>--}}
 
 
 

@@ -1,7 +1,7 @@
 @extends('index')
 @section('contenido')
 <div class="bg-gray-100 h-screen overflow-hidden flex">
-    <div class="container mx-auto my-5 p-5">
+    <div>
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">

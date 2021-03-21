@@ -6,9 +6,12 @@ use App\Models\Anexo;
 use App\Models\Beneficiario;
 use App\Models\Hijo;
 use App\Models\Persona;
+use CreateHijosTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 class PersonaController extends Controller
 {
@@ -70,7 +73,12 @@ class PersonaController extends Controller
         $datosPersona->m_fallecida = $request->m_fallecida;
         $datosPersona->p_fallecido = $request->p_fallecido;
         $datosPersona->c_fallecido = $request->c_fallecido;
-        $datosPersona->imagen = $request->file('imagen')->store('public/images');
+        if ($request->file('imagen') == null) {
+            $datosPersona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+        }else{
+            $datosPersona->imagen = $request->file('imagen')->store('public/images');
+        }
+
 
         $datosPersona->save();
         //tabla hijo
@@ -174,33 +182,36 @@ class PersonaController extends Controller
         $persona->p_fallecido = $request->p_fallecido;
         $persona->c_fallecido = $request->c_fallecido;
         if ($request->hasFile('imagen')) {
-
-
-
             Storage::delete($persona->imagen);
             $persona->imagen = $request->file('imagen')->store('public/images');
-
         }
         else {
             $persona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
         }
         $cant = $request->nombre_hijo;
-        for ($i=0; $i < count($cant) ; $i++) {
-            if(count($cant)>2){
 
-            $persona->hijos[$i]->nombre_hijo = $request->nombre_hijo[$i];
-            $persona->hijos[$i]->edad = $request->edad[$i];
-            $persona->hijos[$i]->sexo = $request->sexo[$i];
-            $persona->push();
+        if ($cant != null)
+        {
+            foreach ($cant as $key => $value)
+            {
+
+
+                $persona->hijos[$key]->nombre_hijo = $request->nombre_hijo[$key];
+                $persona->hijos[$key]->edad = $request->edad[$key];
+                $persona->hijos[$key]->sexo = $request->sexo[$key];
+                $persona->hijos[$key]->update();
+
+
             }
-            else{
-                $persona->hijos[$i+1]->delete();
-
-            }
-
-
         }
-        $persona->save();
+        if (count($cant)==($key+1)) {
+            $persona->hijos[$key]->delete();
+        }
+
+
+
+
+        $persona->update();
         Anexo::where('persona_id',$persona->id)->update([
             'partida_afiliado' => $request->partida_afiliado,
             'partida_hijo' => $request->partida_hijo,

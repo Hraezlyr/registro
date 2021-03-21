@@ -8,4 +8,4 @@ boton.addEventListener('click', () => {
 })
 btn_prin.addEventListener('click', () => {
     menu_prin.classList.toggle('hidden');
-})
+}) 

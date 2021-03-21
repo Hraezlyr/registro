@@ -15,12 +15,8 @@ use App\Models\Persona;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/bienvenido', function () {
-    return view('bienvenido');
+Route::get('/persona', function () {
+    return view('persona.index');
 });
 
 Route::resource('persona', PersonaController::class);

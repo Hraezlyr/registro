@@ -198,13 +198,13 @@
                                         </div>
                                 </div>
                                 <div class="col-span-6">
-                                    <button type="button" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
+                                    <button id="nuevo" type="button" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
                                     <button type="button" class="borrar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
                                 </div>
-                               @if (count($datos->hijos) === 0)
-                                    <label for="">no hay</label>
-                                @else
                                 <div id="grupo-hijo" class="col-span-6">
+                                    @if (count($datos->hijos) === 0)
+                                        <span>no hay</span>
+                                    @else
                                     @foreach ($datos->hijos as $item)
                                     <div class="hijos grid grid-cols-6 gap-4">
                                         <div class="col-start-1 col-end-3">
@@ -299,7 +299,7 @@
                                     <label for="last_name" class="block text-sm font-medium text-gray-700">Partida de nacimiento del afiliado</label>
                                     <div class="flex items-center">
                                         <input id="partida_afiliado" name="partida_afiliado" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" value="1" {{$datos->anexo->partida_afiliado == "1" ? 'checked=checked' : ''}}>
-                                        <label for="partida_afiliado" class="ml-3 block text-sm font-medium text-gray-700">
+                                        <label id="eliminar" for="partida_afiliado" class="ml-3 block text-sm font-medium text-gray-700">
                                             Si
                                         </label>
                                     </div>
@@ -394,5 +394,6 @@
 </form>
 <script src="{{asset('/js/facultad.js')}}"></script>
 <script src="{{asset('/js/clonar.js')}}"></script>
+<script src="{{asset('/js/nuevo.js')}}"></script>
 @endsection
 

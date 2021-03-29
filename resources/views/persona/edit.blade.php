@@ -1,23 +1,6 @@
 @extends('index')
 @section('contenido')
-
-
-<!--
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('tailwindcss/forms'),
-    ]
-  }
-  ```
--->
+<div class="flex flex-wrap pt-5 pl-3 pr-3">
 <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h1 class="text-center text-3xl font-bold leading-tight text-gray-900">
@@ -198,35 +181,35 @@
                                         </div>
                                 </div>
                                 <div class="col-span-6">
-                                    <button id="nuevo" type="button" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
+                                    <button id="nuevo_hijo" type="button" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
                                     <button type="button" class="borrar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
                                 </div>
                                 <div id="grupo-hijo" class="col-span-6">
                                     @if (count($datos->hijos) === 0)
-                                        <span>no hay</span>
+                                        <span id="no_hay">No hay datos de hijos registrados</span>
                                     @else
-                                    @foreach ($datos->hijos as $item)
-                                    <div class="hijos grid grid-cols-6 gap-4">
-                                        <div class="col-start-1 col-end-3">
-                                            <label for="nombre_hijo" class="block text-sm font-medium text-gray-700">Nombre</label>
-                                            <input type="text" name="nombre_hijo[{{$loop->index}}]" id="nombre_hijo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_hijo}}">
-                                        </div>
-                                        <div class="col-start-3 col-end-5">
-                                            <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
-                                            <select id="sexo" name="sexo[{{$loop->index}}]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="{{$item->sexo}}"selected>{{$item->sexo}}</option>
-                                                <option value="femenino">Femenino</option>
-                                                <option value="masculino">Masculino</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-start-5">
-                                            <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
-                                            <input type="number" name="edad[{{$loop->index}}]" id="edad" class="w-24 mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->edad}}">
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                        @foreach ($datos->hijos as $item)
+                                            <div class="hijos grid grid-cols-6 gap-4">
+                                                <div class="col-start-1 col-end-3">
+                                                    <label for="nombre_hijo" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                                    <input type="text" name="nombre_hijo[]" id="nombre_hijo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_hijo}}">
+                                                </div>
+                                                <div class="col-start-3 col-end-5">
+                                                    <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
+                                                    <select id="sexo" name="sexo[]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option value="{{$item->sexo}}"selected>{{$item->sexo}}</option>
+                                                        <option value="femenino">Femenino</option>
+                                                        <option value="masculino">Masculino</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-start-5">
+                                                    <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
+                                                    <input type="number" name="edad[]" id="edad" class="w-24 mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->edad}}">
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
-                            @endif
                             </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6"></div>
@@ -249,30 +232,36 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div id="formulario" class="px-4 py-5 bg-white sm:p-6">
-                            <div class="col-span-6">
-                                <button type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
+                            <div class="col-span-6 pb-3">
+                                <button id="nuevo_b" type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
                                 <button type="button" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
                             </div>
-                            @foreach ($datos->beneficiarios as $item)
-                            <div class="grupo grid grid-cols-6 gap-4">
-                                <div class="col-start-1 col-span-2">
-                                    <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
-                                    <input type="text" name="nombre_beneficiario[]" id="nombre_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_beneficiario}}">
+                            @if (count($datos->beneficiarios) === 0)
+                                <div class="col-span-6">
+                                    <span id="no_hay_b" class="block text-sm font-medium text-gray-700">No hay beneficiarios registrados</span>
                                 </div>
-                                <div class="col-span-2">
-                                    <label for="cedula_beneficiario" class="block text-sm font-medium text-gray-700">Cédula</label>
-                                    <input type="text" name="cedula_beneficiario[]" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->cedula_beneficiario}}">
-                                </div>
-                                <div>
-                                    <label for="parentezco" class="block text-sm font-medium text-gray-700">Parentezco %</label>
-                                    <input type="number" name="parentezco[]" id="parentezco" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->parentezco}}">
-                                </div>
-                                <div class="grid grid-cols-1">
-                                    <label for="cel_beneficiario" class="text-sm font-medium text-gray-700">Celular</label>
-                                    <input type="text" name="cel_beneficiario[]" id="cel_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->celular_beneficiario}}">
-                                </div>
-                            </div>
-                            @endforeach
+                            @else
+                                @foreach ($datos->beneficiarios as $item)
+                                    <div class="grupo grid grid-cols-6 gap-4">
+                                        <div class="col-start-1 col-span-2">
+                                            <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                            <input type="text" name="nombre_beneficiario[]" id="nombre_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_beneficiario}}">
+                                        </div>
+                                        <div class="col-span-2">
+                                            <label for="cedula_beneficiario" class="block text-sm font-medium text-gray-700">Cédula</label>
+                                            <input type="text" name="cedula_beneficiario[]" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->cedula_beneficiario}}">
+                                        </div>
+                                        <div>
+                                            <label for="parentezco" class="block text-sm font-medium text-gray-700">Parentezco %</label>
+                                            <input type="number" name="parentezco[]" id="parentezco" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->parentezco}}">
+                                        </div>
+                                        <div class="grid grid-cols-1">
+                                            <label for="cel_beneficiario" class="text-sm font-medium text-gray-700">Celular</label>
+                                            <input type="text" name="cel_beneficiario[]" id="cel_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->cel_beneficiario}}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6"></div>
                     </div>
@@ -393,7 +382,8 @@
     </div>
 </form>
 <script src="{{asset('/js/facultad.js')}}"></script>
-<script src="{{asset('/js/clonar.js')}}"></script>
-<script src="{{asset('/js/nuevo.js')}}"></script>
+<script src="{{asset('/js/nuevo_hijo_edicion.js')}}"></script>
+<script src="{{asset('/js/nuevo_beneficiario_edicion.js')}}"></script>
+</div>
 @endsection
 

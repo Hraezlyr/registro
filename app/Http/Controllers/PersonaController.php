@@ -22,7 +22,7 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $lista = Persona::orderBy('id','desc')->paginate(10);
+        $lista = Persona::orderBy('id','desc')->paginate(8);
         return view('persona.index', compact('lista'));
     }
 
@@ -188,30 +188,74 @@ class PersonaController extends Controller
         else {
             $persona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
         }
+
+        $persona->update();
         $cant = $request->nombre_hijo;
-
-        if ($cant != null)
+        if($cant != null)
         {
-            foreach ($cant as $key => $value)
+            $existe = Hijo::where('persona_id',$persona->id)->get();
+            if (count($cant) == count($existe)) {
+                foreach ($request->nombre_hijo as $key => $value)
+                {
+
+                        $persona->hijos[$key]->nombre_hijo = $request->nombre_hijo[$key];
+                        $persona->hijos[$key]->edad = $request->edad[$key];
+                        $persona->hijos[$key]->sexo = $request->sexo[$key];
+                        $persona->hijos[$key]->update();
+
+                }
+
+            }
+            elseif(count($cant) > count($existe))
             {
+                for ($i= count($existe); $i < count($cant) ; $i++) {
 
-
-                $persona->hijos[$key]->nombre_hijo = $request->nombre_hijo[$key];
-                $persona->hijos[$key]->edad = $request->edad[$key];
-                $persona->hijos[$key]->sexo = $request->sexo[$key];
-                $persona->hijos[$key]->update();
+                    $datosHijo = new Hijo();
+                    $datosHijo->nombre_hijo = $request->nombre_hijo[$i];
+                    $datosHijo->edad = $request->edad[$i];
+                    $datosHijo->sexo = $request->sexo[$i];
+                    $persona->hijos()->save($datosHijo);
+                }
 
 
             }
-        }
-        if (count($cant)==($key+1)) {
-            $persona->hijos[$key]->delete();
+
         }
 
+        $cantB = $request->nombre_beneficiario;
+        if($cantB != null)
+        {
+            $existe_b = Beneficiario::where('persona_id',$persona->id)->get();
+            if (count($cantB) == count($existe_b)) {
+                foreach ($request->nombre_beneficiario as $key => $value)
+                {
+
+                        $persona->beneficiarios[$key]->nombre_beneficiario = $request->nombre_beneficiario[$key];
+                        $persona->beneficiarios[$key]->cedula_beneficiario = $request->cedula_beneficiario[$key];
+                        $persona->beneficiarios[$key]->parentezco = $request->parentezco[$key];
+                        $persona->beneficiarios[$key]->cel_beneficiario = $request->cel_beneficiario[$key];
+                        $persona->beneficiarios[$key]->update();
+
+                }
+
+            }
+            elseif(count($cantB) > count($existe_b))
+            {
+                for ($i= count($existe_b); $i < count($cantB) ; $i++) {
+
+                    $datosBeneficiario = new Beneficiario();
+                    $datosBeneficiario->nombre_beneficiario = $request->nombre_beneficiario[$i];
+                    $datosBeneficiario->cedula_beneficiario = $request->cedula_beneficiario[$i];
+                    $datosBeneficiario->parentezco = $request->parentezco[$i];
+                    $datosBeneficiario->cel_beneficiario = $request->cel_beneficiario[$i];
+                    $persona->beneficiarios()->save($datosBeneficiario);
+                }
 
 
+            }
 
-        $persona->update();
+        }
+
         Anexo::where('persona_id',$persona->id)->update([
             'partida_afiliado' => $request->partida_afiliado,
             'partida_hijo' => $request->partida_hijo,
@@ -223,7 +267,11 @@ class PersonaController extends Controller
 
 
 
-        return redirect(route('persona.index'));
+        return redirect(route('persona.index'))->with('actualizado','ok');
+
+
+
+
     }
 
     /**

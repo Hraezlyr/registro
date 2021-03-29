@@ -5,29 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-    .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #546e7a; }
-        .cta-btn { color: #4E66C4; }
-        .upgrade-btn { background: #4E66C4; }
-        .upgrade-btn:hover { background: #819ca9; }
-        .active-nav-link { background: #819ca9; }
-        .nav-item:hover { background: #819ca9; }
-        .account-link:hover { background: #29434e; }
-        .cinta {background: #29434e;}
-        .divisor {width: 90%;margin: auto}
-</style>
-<body class="flex bg-gray-100">
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="{{asset('/js/app.js')}}"></script>
 
+
+    <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+        <div class="flex flex-wrap items-center">
+            <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                <a href="#">
+                    <span class="text-xl pl-2"><i class="em em-grinning"></i></span>
+                </a>
+            </div>
+            <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+                <span class="relative w-full">
+                    <input type="search" placeholder="Busqueda rápida" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
+                    <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
+                        <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
+                        </svg>
+                    </div>
+                </span>
+            </div>
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <span class="inline-block py-2 px-4 text-white no-underline" href="#">Active</span>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <div class="relative inline-block">
+                            <button id="boton" class="drop-button text-white focus:outline-none realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                                <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">
+                            </button>
+                            <div id="menu" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 hidden">
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-lg no-underline hover:no-underline block">Perfil</a>
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-lg no-underline hover:no-underline block">Ajustes</a>
+                                <div class="border border-gray-600"></div>
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-lg no-underline hover:no-underline block">Salir</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="flex flex-col md:flex-row">
+        <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+            <div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+                <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
+                    <li class="mr-3 flex-1">
+                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-users pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('persona.index')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                            <i class="fa fa-list pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Ver Registros</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('persona.create')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-600">
+                            <i class="fas fa-plus pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Nuevo registro</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="#" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                            <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Payments</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+            <main>
+                @yield('contenido')
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                @if (session('guardar') == 'ok')
+                    <script>
+                        Swal.fire(
+                            'Guardado!',
+                            'El registro ha sido guardado',
+                            'success')
+                    </script>
+                @endif
+                @if (session('actualizado') == 'ok')
+                    <script>
+                        Swal.fire(
+                            'Actualizado!',
+                            'El registro ha sido actualizado',
+                            'success')
+                    </script>
+                @endif
+                @if (session('eliminar') == 'ok')
+                    <script>
+                        Swal.fire(
+                            'Eliminado!',
+                            'El registro ha sido eliminado',
+                            'success')
+                    </script>
+                @endif
+                <script src="{{url('/js/alerta_borrar.js')}}"></script>
+                <script src="{{url('/js/menu.js')}}"></script>
+            </main>
+        </div>
+    </div>
+{{--
     <aside class="hidden relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
-        <div class="p-6">
+      <div class="p-6">
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
@@ -43,14 +132,20 @@
             </a>
 
         </nav>
-        <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
-            <i class="fas fa-arrow-circle-up mr-3"></i>
-            Upgrade to Pro!
-        </a>
     </aside>
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         <header class="w-full items-center cinta py-2 px-6 hidden sm:flex">
-            <div class="w-1/2"></div>
+
+            <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+              <span class="relative w-full">
+                  <input type="search" placeholder="Buscar" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
+                  <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
+                      <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
+                      </svg>
+                  </div>
+              </span>
+            </div>
             <div class="relative w-1/2 flex justify-end">
                 <button id="boton" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
                     <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
@@ -65,150 +160,8 @@
         </header>
         <br>
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-            <main class="w-full flex-grow p-1">
 
-                    @yield('contenido')
-
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                @if (session('guardar') == 'ok')
-                    <script>
-                        Swal.fire(
-                        'Guardado!',
-                        'El registro ha sido guardado',
-                        'success')
-                    </script>
-                @endif
-                @if (session('eliminar') == 'ok')
-                    <script>
-                        Swal.fire(
-                        'Eliminado!',
-                        'El registro ha sido eliminado',
-                        'success')
-                    </script>
-                @endif
-                <script src="{{url('/js/alerta_borrar.js')}}"></script>
-                <script src="{{url('/js/menu.js')}}"></script>
-            </main>
         </div>
-    </div>
-    {{--
-    <nav class="bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
-                <img class="h-8 w-8" src="https://scontent.fmga5-1.fna.fbcdn.net/v/t1.0-9/54799473_187364678907372_8266723257705562112_o.jpg?_nc_cat=106&ccb=3&_nc_sid=825194&_nc_ohc=Q0nPZq-s2pgAX-963lU&_nc_ht=scontent.fmga5-1.fna&oh=00a885b05ba195a65ef93480292d3816&oe=6050210B" alt="Workflow">
-              </div>
-              <div class="hidden md:block">
-                <div class="ml-10 flex items-baseline space-x-4">
-                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="{{url('/inicio')}}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
-
-                  <a href="{{url('/persona')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ver registros</a>
-
-                  <a href="{{url('/persona/create')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ingresar datos</a>
-
-                </div>
-              </div>
-            </div>
-            <div class="hidden md:block">
-              <div class="ml-4 flex items-center md:ml-6">
-                <!-- Profile dropdown -->
-                <div class="ml-3 relative">
-                  <div>
-                    <button id="boton" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                      <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                    </button>
-                  </div>
-                  <!--
-                    Profile dropdown panel, show/hide based on dropdown state.
-
-                    Entering: "transition ease-out duration-100"
-                      From: "transform opacity-0 scale-95"
-                      To: "transform opacity-100 scale-100"
-                    Leaving: "transition ease-in duration-75"
-                      From: "transform opacity-100 scale-100"
-                      To: "transform opacity-0 scale-95"
-                  -->
-                  <div id="menu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Perfil</a>
-
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Ajustes</a>
-
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Salir</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="-mr-2 flex md:hidden">
-              <!-- Mobile menu button -->
-              <button id="btn-menu-principal" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <span class="sr-only">Open main menu</span>
-                <!--
-                  Heroicon name: outline/menu
-
-                  Menu open: "hidden", Menu closed: "block"
-                -->
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <!--
-                  Heroicon name: outline/x
-
-                  Menu open: "block", Menu closed: "hidden"
-                -->
-                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!--
-          Mobile menu, toggle classes based on menu state.
-
-          Open: "block", closed: "hidden"
-        -->
-        <div id="menu-principal" class="hidden md:hidden">
-          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="{{url('/inicio')}}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
-
-            <a href="{{url('/persona')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ver registros</a>
-
-            <a href="{{url('/persona/create')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Ingresar datos</a>
-          </div>
-          <div class="pt-4 pb-3 border-t border-gray-700">
-            <div class="flex items-center px-5">
-              <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-              </div>
-              <div class="ml-3">
-                <div class="text-base font-medium leading-none text-white">Tom Cook</div>
-                <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
-              </div>
-              <button class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <span class="sr-only">View notifications</span>
-                <!-- Heroicon name: outline/bell -->
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-            </div>
-            <div class="mt-3 px-2 space-y-1">
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Perfil</a>
-
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Ajustes</a>
-
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Salir</a>
-            </div>
-          </div>
-        </div>
-      </nav>--}}
-
-
-
+    </div>--}}
 </body>
 </html>

@@ -189,7 +189,7 @@ class PersonaController extends Controller
             $persona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
         }
 
-        $persona->update();
+        //$persona->update();
         $cant = $request->nombre_hijo;
         if($cant != null)
         {
@@ -255,25 +255,40 @@ class PersonaController extends Controller
             }
 
         }
+        $hijo_a_eliminar = $request->input('eliminar_h');
+        if ($hijo_a_eliminar != null) {
+            foreach ($hijo_a_eliminar as $key => $value) {
+                $borrar_h = Hijo::find($value);
+                $borrar_h->delete();
 
-        Anexo::where('persona_id',$persona->id)->update([
-            'partida_afiliado' => $request->partida_afiliado,
-            'partida_hijo' => $request->partida_hijo,
-            'partida_padres' => $request->partida_padres,
-            'acta_matrimonio' => $request->acta_matrimonio,
-            'declaracion_notariada' => $request->declaracion_notariada,
-            'observaciones' => $request->observaciones
-        ]);
+            }
+            return back()->withInput();
 
+        }
 
+        $beneficiario_a_eliminar = $request->input('eliminar_b');
+        if ($beneficiario_a_eliminar != null) {
+            foreach ($beneficiario_a_eliminar as $key => $value) {
+                $borrar_b = Beneficiario::find($value);
+                $borrar_b->delete();
+            }
+            return back()->withInput();
 
+        }
+            $persona->anexo->partida_afiliado = $request->partida_afiliado;
+            $persona->anexo->partida_hijo = $request->partida_hijo;
+            $persona->anexo->partida_padres = $request->partida_padres;
+            $persona->anexo->acta_matrimonio = $request->acta_matrimonio;
+            $persona->anexo->declaracion_notariada = $request->declaracion_notariada;
+            $persona->anexo->observaciones = $request->observaciones;
+            $persona->anexo->update();
+        $persona->update();
         return redirect(route('persona.index'))->with('actualizado','ok');
 
 
 
 
     }
-
     /**
      * Remove the specified resource from storage.
      *

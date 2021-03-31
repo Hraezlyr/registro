@@ -182,7 +182,11 @@
                                 </div>
                                 <div class="col-span-6">
                                     <button id="nuevo_hijo" type="button" class="clonar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
-                                    <button type="button" class="borrar-hijo inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
+                            <form action="{{route('persona.update',$datos)}}" method="post">
+                                @csrf
+                                @method('PUT')
+                                    <button id="borrar_campo" type="button" class="hidden inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Eliminar Campos</button>
+                                    <button id="boton_eliminar" type="submit" class="borrar-hijo hidden inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
                                 </div>
                                 <div id="grupo-hijo" class="col-span-6">
                                     @if (count($datos->hijos) === 0)
@@ -192,7 +196,7 @@
                                             <div class="hijos grid grid-cols-6 gap-4">
                                                 <div class="col-start-1 col-end-3">
                                                     <label for="nombre_hijo" class="block text-sm font-medium text-gray-700">Nombre</label>
-                                                    <input type="text" name="nombre_hijo[]" id="nombre_hijo" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_hijo}}">
+                                                    <input type="text" name="nombre_hijo[]" id="nombre_hijo" class="contar mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_hijo}}">
                                                 </div>
                                                 <div class="col-start-3 col-end-5">
                                                     <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
@@ -206,10 +210,17 @@
                                                     <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
                                                     <input type="number" name="edad[]" id="edad" class="w-24 mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->edad}}">
                                                 </div>
+                                                <div class="flex mt-6">
+                                                    <label class="flex items-center">
+                                                      <input id="eliminar_h" name="eliminar_h[]" type="checkbox" class="form-checkbox" value="{{$item->id}}">
+                                                      <span class="ml-2">Eliminar</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         @endforeach
                                     @endif
                                 </div>
+                            </form>
                             </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6"></div>
@@ -232,36 +243,46 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div id="formulario" class="px-4 py-5 bg-white sm:p-6">
-                            <div class="col-span-6 pb-3">
-                                <button id="nuevo_b" type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
-                                <button type="button" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
-                            </div>
-                            @if (count($datos->beneficiarios) === 0)
-                                <div class="col-span-6">
-                                    <span id="no_hay_b" class="block text-sm font-medium text-gray-700">No hay beneficiarios registrados</span>
+                            <form action="{{route('persona.update',$datos)}}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <div class="col-span-6 pb-3">
+                                    <button id="nuevo_b" type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir</button>
+                                    <button id="borrar_b" type="submit" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar</button>
                                 </div>
-                            @else
-                                @foreach ($datos->beneficiarios as $item)
-                                    <div class="grupo grid grid-cols-6 gap-4">
-                                        <div class="col-start-1 col-span-2">
-                                            <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
-                                            <input type="text" name="nombre_beneficiario[]" id="nombre_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->nombre_beneficiario}}">
-                                        </div>
-                                        <div class="col-span-2">
-                                            <label for="cedula_beneficiario" class="block text-sm font-medium text-gray-700">Cédula</label>
-                                            <input type="text" name="cedula_beneficiario[]" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->cedula_beneficiario}}">
-                                        </div>
-                                        <div>
-                                            <label for="parentezco" class="block text-sm font-medium text-gray-700">Parentezco %</label>
-                                            <input type="number" name="parentezco[]" id="parentezco" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->parentezco}}">
-                                        </div>
-                                        <div class="grid grid-cols-1">
-                                            <label for="cel_beneficiario" class="text-sm font-medium text-gray-700">Celular</label>
-                                            <input type="text" name="cel_beneficiario[]" id="cel_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$item->cel_beneficiario}}">
-                                        </div>
+                                @if (count($datos->beneficiarios) === 0)
+                                    <div class="col-span-6">
+                                        <span id="no_hay_b" class="block text-sm font-medium text-gray-700">No hay beneficiarios registrados</span>
                                     </div>
-                                @endforeach
-                            @endif
+                                @else
+                                    @foreach ($datos->beneficiarios as $bene)
+                                        <div class="grupo grid grid-cols-7 gap-4">
+                                            <div class="col-span-2">
+                                                <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                                <input type="text" name="nombre_beneficiario[]" id="nombre_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$bene->nombre_beneficiario}}">
+                                            </div>
+                                            <div class="col-span-2">
+                                                <label for="cedula_beneficiario" class="block text-sm font-medium text-gray-700">Cédula</label>
+                                                <input type="text" name="cedula_beneficiario[]" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$bene->cedula_beneficiario}}">
+                                            </div>
+                                            <div class="col-span-1">
+                                                <label for="parentezco" class="block text-sm font-medium text-gray-700">Parentezco %</label>
+                                                <input type="number" name="parentezco[]" id="parentezco" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$bene->parentezco}}">
+                                            </div>
+                                            <div class="col-span-1">
+                                                <label for="cel_beneficiario" class="block text-sm font-medium text-gray-700">Celular</label>
+                                                <input type="text" name="cel_beneficiario[]" id="cel_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-24 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$bene->cel_beneficiario}}">
+                                            </div>
+                                            <div class="flex mt-7">
+                                                <label>
+                                                    <input id="eliminar_b" name="eliminar_b[]" type="checkbox" class="form-checkbox" value="{{$bene->id}}">
+                                                    <span class="ml-2">Eliminar</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </form>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6"></div>
                     </div>
@@ -384,6 +405,18 @@
 <script src="{{asset('/js/facultad.js')}}"></script>
 <script src="{{asset('/js/nuevo_hijo_edicion.js')}}"></script>
 <script src="{{asset('/js/nuevo_beneficiario_edicion.js')}}"></script>
+<script>
+    var check = document.getElementById('eliminar_h');
+check.addEventListener('change',function() {
+    if ( $(check).prop('checked')) {
+        borrar.classList.remove('hidden');
+    }
+    else{
+        borrar.classList.add('hidden');
+    }
+})
+
+</script>
 </div>
 @endsection
 

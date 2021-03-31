@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HijoController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Persona;
 

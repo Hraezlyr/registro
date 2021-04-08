@@ -242,10 +242,10 @@
                             <div id="formulario" class="px-4 py-5 bg-white sm:p-6">
                                 <div class="col-span-6">
                                     <button type="button" class="clonar border inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">Añadir campos</button>
-                                    <button type="button" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar campos</button>
+                                    <button type="button" id="borrar-beneficiarios" class="borrar-beneficiarios inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-red-500 rounded-full shadow ripple hover:shadow-lg hover:bg-red-600 focus:outline-none">Borrar campos</button>
                                 </div>
                                 <br>
-                                <div class="grupo grid grid-cols-6 gap-4">
+                                <div id="grupo" class="grupo grid grid-cols-6 gap-4">
                                     <div class="col-start-1 col-span-2">
                                         <label for="nombre_beneficiario" class="block text-sm font-medium text-gray-700">Nombre</label>
                                         <input type="text" name="nombre_beneficiario[]" id="nombre_beneficiario" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">

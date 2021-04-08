@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuscarController;
 use App\Http\Controllers\HijoController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PhotoController;
@@ -22,3 +23,5 @@ Route::get('/persona', function () {
 });
 
 Route::resource('persona', PersonaController::class);
+
+Route::get('/buscar/personas',[BuscarController::class,'personas'])->name('buscar.personas');

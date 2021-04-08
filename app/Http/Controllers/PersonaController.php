@@ -185,10 +185,6 @@ class PersonaController extends Controller
             Storage::delete($persona->imagen);
             $persona->imagen = $request->file('imagen')->store('public/images');
         }
-        else {
-            $persona->imagen = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
-        }
-
         //$persona->update();
         $cant = $request->nombre_hijo;
         if($cant != null)

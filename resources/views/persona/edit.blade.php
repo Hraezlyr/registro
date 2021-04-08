@@ -103,7 +103,7 @@
                                         <div class="flex text-sm text-gray-600">
                                           <label for="imagen" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                             <span>Escoja una imagen</span>
-                                            <input type="file" name="imagen" id="imagen" accept="image/*"  class="sr-only" value="{{asset(Storage::url($datos->imagen))}}">
+                                            <input type="file" name="imagen" id="imagen" accept="image/*"  class="sr-only" value="{{$datos->imagen}}">
                                           </label>
                                           <p class="pl-1">o arrastre un archivo</p>
                                         </div>

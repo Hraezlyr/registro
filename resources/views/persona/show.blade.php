@@ -19,10 +19,10 @@
                     </div>
                     <div class="flex pt-3">
                         <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-2" href="{{route('persona.edit',$datos->id)}}">Editar</a>
-                        <form action="{{route('persona.destroy',$datos)}}" method="post">
+                        <form class="borrar_registro" action="{{route('persona.destroy',$datos)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="borrar_registro inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Eliminar</button>
+                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Eliminar</button>
                         </form>
                     </div>
                     <!-- End of profile card -->
@@ -187,4 +187,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{asset('js/alerta_borrar.js')}}"></script>
 @endsection

@@ -11,6 +11,7 @@
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="{{asset('js/jquery-ui.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="{{asset('/js/app.js')}}"></script>
 
@@ -24,12 +25,14 @@
             </div>
             <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
                 <span class="relative w-full">
-                    <input type="search" placeholder="Busqueda rápida" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
-                    <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
-                        <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                        </svg>
-                    </div>
+                    <form action="">
+                        <input type="search" id="busqueda" placeholder="Busqueda rápida" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
+                        <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
+                            <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
+                            </svg>
+                        </div>
+                    </form>
                 </span>
             </div>
             <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
@@ -111,57 +114,9 @@
                 @endif
                 <script src="{{url('/js/alerta_borrar.js')}}"></script>
                 <script src="{{url('/js/menu.js')}}"></script>
+                <script src="{{url('/js/busqueda.js')}}"></script>
             </main>
         </div>
     </div>
-{{--
-    <aside class="hidden relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
-      <div class="p-6">
-            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-        </div>
-        <nav class="text-white text-base font-semibold pt-3">
-            <hr class="divisor">
-            <a href="{{url('/persona')}}" class="flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-sticky-note mr-3"></i>
-                Ver Registros
-            </a>
-            <hr class="divisor">
-            <a href="{{url('/persona/create')}}" class="flex items-center text-white hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-table mr-3"></i>
-                Agregar un registro
-            </a>
-
-        </nav>
-    </aside>
-    <div class="w-full flex flex-col h-screen overflow-y-hidden">
-        <header class="w-full items-center cinta py-2 px-6 hidden sm:flex">
-
-            <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
-              <span class="relative w-full">
-                  <input type="search" placeholder="Buscar" class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
-                  <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
-                      <svg class="fill-current pointer-events-none text-white w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
-                      </svg>
-                  </div>
-              </span>
-            </div>
-            <div class="relative w-1/2 flex justify-end">
-                <button id="boton" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
-                </button>
-                <button class="hidden h-full w-full fixed inset-0 cursor-default"></button>
-                <div id="menu" class="hidden absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
-                </div>
-            </div>
-        </header>
-        <br>
-        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-
-        </div>
-    </div>--}}
 </body>
 </html>
